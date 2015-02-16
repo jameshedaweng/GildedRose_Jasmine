@@ -42,7 +42,7 @@ GildedRose.nameCheck = function(i, str){
 
 GildedRose.changeQuality = function(i, rate){
   if (items[i].quality <= 50 && items[i].quality > 0){
-    items[i].quality = items[i].quality + rate;
+    items[i].quality += rate;
   }
 };
 
