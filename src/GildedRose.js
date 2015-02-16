@@ -17,16 +17,7 @@ GildedRose.updateQuality = function (items) {
         break;
       }
       case "B"{
-        if (item[i].sellIn <= 0)
-          item[i].quality = 0;
-        else if (item[i].sellIn < 6)
-          changeQuality(i, 3);
-        else if (item[i].sellIn < 11){
-          changeQuality(i, 2);
-        }
-        else{
-          changeQuality(i, 1);
-        }
+        backstagePasses(i);
         break;
       }
       case "C"{
@@ -65,5 +56,18 @@ GildedRose.nameCheck = function(name, str){
 GildedRose.changeQuality = function(i, rate){
   if (items[i].quality <= 50 && items[i].quality > 0){
     items[i].quality = items[i].quality + rate;
+  }
+};
+
+GildedRose.backstagePasses = function(i){
+  if (item[i].sellIn <= 0)
+    item[i].quality = 0;
+  else if (item[i].sellIn < 6)
+    changeQuality(i, 3);
+  else if (item[i].sellIn < 11){
+    changeQuality(i, 2);
+  }
+  else{
+    changeQuality(i, 1);
   }
 };
