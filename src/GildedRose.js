@@ -11,20 +11,20 @@ var GildedRose = function () {
 
 GildedRose.updateQuality = function (items) {
   for (var i = 0; i < items.length; i++){
-    switch (checkCategory(items[i].name)){
-      case "A"{
+    switch (true){
+      case nameCheck(i, "Aged Brie"){
         changeQuality(i, 1);
         break;
       }
-      case "B"{
+      case nameCheck(i, "Backstage passes"){
         backstagePasses(i);
         break;
       }
-      case "C"{
+      case nameCheck(i, "Conjured"){
         changeQuality(i, -2);
         break;
       }
-      case "S"{
+      case nameCheck(i, "Sulfuras"){
         break;
       }
       default{
@@ -36,21 +36,8 @@ GildedRose.updateQuality = function (items) {
   return items;
 };
 
-GildedRose.checkCategory = function(name){
-  if (nameCheck(name, "Aged Brie"))
-    return "A";
-  else if (nameCheck(name, "Backstage passes"))
-    return "B";
-  else if (nameCheck(name, "Conjured"))
-    return "C";
-  else if (nameCheck(name, "Sulfuras"))
-    return "S";
-  else
-    return;
-};
-
-GildedRose.nameCheck = function(name, str){
-  return name.indexOf(str) > -1;
+GildedRose.nameCheck = function(i, str){
+  return item[i].name.indexOf(str) > -1;
 };
 
 GildedRose.changeQuality = function(i, rate){
