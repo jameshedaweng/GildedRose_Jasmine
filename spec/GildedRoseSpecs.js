@@ -1,5 +1,6 @@
 describe("GildedRose shop manager", function () {
-  it("does some stuff", function() {
-     expect(1).toBe(1);
+  it("check value", function() {
+    GildedRose();
+    expect(items[0].quality).toBe(19);
   });
 });

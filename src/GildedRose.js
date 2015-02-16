@@ -1,5 +1,5 @@
+var items = [];
 var GildedRose = function () {
-  var items = [];
   items.push(new Item("+5 Dexterity Vest", 10, 20));
   items.push(new Item("Aged Brie", 2, 0));
   items.push(new Item("Elixir of the Mongoose", 5, 7));
@@ -11,25 +11,18 @@ var GildedRose = function () {
 
 GildedRose.updateQuality = function (items) {
   for (var i = 0; i < items.length; i++){
-    switch (true){
-      case nameCheck(i, "Aged Brie"){
-        changeQuality(i, 1);
-        break;
+    if (!GildedRose.nameCheck(i, "Sulfuras")){
+      if (GildedRose.nameCheck(i, "Aged Brie")){
+        GildedRose.changeQuality(i, 1);
       }
-      case nameCheck(i, "Backstage passes"){
-        backstagePasses(i);
-        break;
+      else if (GildedRose.nameCheck(i, "Backstage passes")){
+        GildedRose.backstagePasses(i);
       }
-      case nameCheck(i, "Conjured"){
-        changeQuality(i, -2);
-        break;
+      else if (GildedRose.nameCheck(i, "Conjured")){
+        GildedRose.changeQuality(i, -2);
       }
-      case nameCheck(i, "Sulfuras"){
-        break;
-      }
-      default{
-        changeQuality(i, -1);
-        break;
+      else {
+        GildedRose.changeQuality(i, -1);
       }
     }
   }
@@ -37,23 +30,30 @@ GildedRose.updateQuality = function (items) {
 };
 
 GildedRose.nameCheck = function(i, str){
-  return item[i].name.indexOf(str) > -1;
+  return items[i].name.indexOf(str) > -1;
 };
 
 GildedRose.changeQuality = function(i, rate){
-  if (items[i].quality <= 50 && items[i].quality > 0){
-    items[i].quality += rate;
+  items[i].quality += rate;
+  if (items[i].quality > 50){
+    items[i].quality = 50;
+  }
+  if (items[i].quality < 0){
+    items[i].quality = 0;
   }
 };
 
 GildedRose.backstagePasses = function(i){
-  if (item[i].sellIn <= 0)
-    item[i].quality = 0;
-  else if (item[i].sellIn < 6)
-    changeQuality(i, 3);
-  else if (item[i].sellIn < 11)
-    changeQuality(i, 2);
+  if (items[i].sellIn <= 0){
+    items[i].quality = 0;
+  }
+  else if (items[i].sellIn < 6){
+    GildedRose.changeQuality(i, 3);
+  }
+  else if (items[i].sellIn < 11){
+    GildedRose.changeQuality(i, 2);
+  }
   else{
-    changeQuality(i, 1);
+    GildedRose.changeQuality(i, 1);
   }
 };
